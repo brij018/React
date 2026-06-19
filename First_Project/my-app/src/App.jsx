@@ -5,6 +5,8 @@ import Fragments from "./components/fragments";
 import State from "./components/State";
 import State02 from "./components/State_02";
 import Props from "./components/Props";
+import StateEffect from "./states/state_useEffect";
+import Users from "./states/UserData";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
       <State />
       <State02 />
       <Props msg="helllooo" />
+      <StateEffect />
+      <Users />
     </>
   );
 };
