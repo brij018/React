@@ -3,6 +3,7 @@ import { useState } from "react";
 function Fetch() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editUser, setEditUser] = useState(null);
 
   const loadData = async () => {
     setLoading(true);
@@ -22,6 +23,13 @@ function Fetch() {
     setLoading(false);
   };
 
+  const deleteUser = (index) => {
+    setUsers(users.filter((_, i) => i !== index));
+  };
+  const saveUser = () => {
+    setUsers(users.map((user) => (user.id === editUser.id ? editUser : user)));
+    setEditUser(null);
+  };
   return (
     <>
       <button onClick={loadData} disabled={loading}>
@@ -45,19 +53,50 @@ function Fetch() {
               <th>ID</th>
               <th>Title</th>
               <th>Completed</th>
+              <th>Delete</th>
+              <th>Update</th>
             </tr>
           </thead>
 
           <tbody>
-            {users.map((user) => (
+            {users.map((user, index) => (
               <tr key={user.id}>
-                <td>{user.id}</td>
+                <td>{index + 1}</td>
                 <td>{user.title}</td>
                 <td>{user.completed ? "Yes" : "No"}</td>
+                <td>
+                  <button onClick={() => deleteUser(index)}>Delete</button>
+                </td>
+                <td>
+                  <button onClick={() => setEditUser(user)}>Update</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+      )}
+      {editUser && (
+        <div>
+          <h3>Edit User</h3>
+          <input
+            type="text"
+            value={editUser.title}
+            onChange={(e) =>
+              setEditUser({ ...editUser, title: e.target.value })
+            }
+          />
+          <select
+            value={editUser.completed ? "Yes" : "No"}
+            onChange={(e) =>
+              setEditUser({ ...editUser, completed: e.target.value === "Yes" })
+            }
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <button onClick={saveUser}>Save</button>
+        </div>
       )}
     </>
   );
