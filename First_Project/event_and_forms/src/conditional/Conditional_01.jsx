@@ -12,6 +12,10 @@ const Conditional_01 = () => {
       <button onClick={() => setLogin(!login)}>
         {login ? "LogOut" : "LogIn"}
       </button>
+
+      {/* conditional rendering */}
+
+      {user && <h3>Welcome user!!</h3>}
     </>
   );
 };
