@@ -7,6 +7,7 @@ import State02 from "./components/State_02";
 import Props from "./components/Props";
 import StateEffect from "./states/state_useEffect";
 import Users from "./states/UserData";
+import UseRef from "./states/UseRef";
 
 const App = () => {
   return (
@@ -21,6 +22,11 @@ const App = () => {
       <Props msg="helllooo" />
       <StateEffect />
       <Users />
+      <br />
+      <br />
+      <br />
+      <br />
+      <UseRef />
     </>
   );
 };
