@@ -35,7 +35,7 @@ const Conditional_02 = () => {
       >
         Green
       </button>
-      <h2>{content}</h2>
+      <h1>{content}</h1>
     </>
   );
 };

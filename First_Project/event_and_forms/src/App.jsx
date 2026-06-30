@@ -5,11 +5,13 @@ import OnSubmit_02 from "./events/OnSubmit_02";
 import PassingArgument from "./events/PassingArgument";
 import Conditional_01 from "./conditional/Conditional_01";
 import Conditional_02 from "./conditional/Conditional_02";
+import UnControlled from "./forms/UnControlled";
+import Controlled from "./forms/Controlled";
 
 const App = () => {
   return (
     <>
-      <OnClick_01 />
+      {/* <OnClick_01 />
       <br />
       <br />
       <OnChange />
@@ -24,7 +26,13 @@ const App = () => {
       <Conditional_01 />
       <br />
       <br />
-      <Conditional_02 />
+      <Conditional_02 /> */}
+      <br />
+      <br />
+      <UnControlled />
+      <br />
+      <br />
+      <Controlled />
     </>
   );
 };
