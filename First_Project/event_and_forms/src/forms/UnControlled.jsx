@@ -14,6 +14,8 @@ const UnControlled = () => {
     <>
       <form onSubmit={handleSubmit}>
         <input type="text" ref={inputRef} placeholder="enter your name" />
+        <br />
+        <br />
         <button type="submit">Submit</button>
       </form>
     </>

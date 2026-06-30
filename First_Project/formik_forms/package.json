@@ -12,7 +12,8 @@
   "dependencies": {
     "formik": "^2.4.9",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",
