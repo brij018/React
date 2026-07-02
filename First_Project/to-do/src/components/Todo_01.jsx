@@ -1,5 +1,5 @@
-import React from "react";
 import { useState } from "react";
+import todo from "./Todo.module.css";
 
 const Todo_01 = () => {
   const [input, setInput] = useState({
@@ -55,82 +55,84 @@ const Todo_01 = () => {
   };
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="task"
-          value={input.task}
-          onChange={(e) => handleChange(e)}
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          name="description"
-          value={input.description}
-          onChange={(e) => handleChange(e)}
-          required
-        />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Task</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Done</th>
-            <th>Delete</th>
-            <th>Update</th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map((task, index) => (
-            <tr key={task.id}>
-              <td>{index + 1}</td>
-              <td>{task.task}</td>
-              <td>{task.description}</td>
-              <td>{task.status}</td>
-              <td>
-                <button onClick={() => markDone(task.id)}>Done</button>
-              </td>
-              <td>
-                <button onClick={() => deleteTask(index)}>Delete</button>
-              </td>
-              <td>
-                <button onClick={() => setEditInput(task)}>Update</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {editInput && (
-        <form onSubmit={saveTask}>
-          <input
-            type="text"
-            value={editInput.task}
-            onChange={(e) => {
-              setEditInput({ ...editInput, task: e.target.value });
-            }}
-          />
-          <br />
-          <br />
-          <input
-            type="text"
-            value={editInput.description}
-            onChange={(e) => {
-              setEditInput({ ...editInput, description: e.target.value });
-            }}
-          />
-          <br />
-          <br />
-          <button type="submit">Save</button>
-        </form>
-      )}
+      <div className={todo.container}>
+        <div className={todo.box1}>
+          <form action="" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="task"
+              value={input.task}
+              onChange={(e) => handleChange(e)}
+              required
+            />
+            <input
+              type="text"
+              name="description"
+              value={input.description}
+              onChange={(e) => handleChange(e)}
+              required
+            />
+            <button type="submit">Add</button>
+          </form>
+        </div>
+        <div className={todo.box2}>
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Done</th>
+                <th>Delete</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.map((task, index) => (
+                <tr key={task.id}>
+                  <td>{index + 1}</td>
+                  <td>{task.task}</td>
+                  <td>{task.description}</td>
+                  <td>{task.status}</td>
+                  <td>
+                    <button onClick={() => markDone(task.id)}>Done</button>
+                  </td>
+                  <td>
+                    <button onClick={() => deleteTask(index)}>Delete</button>
+                  </td>
+                  <td>
+                    <button onClick={() => setEditInput(task)}>Update</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {editInput && (
+          <form onSubmit={saveTask}>
+            <input
+              type="text"
+              value={editInput.task}
+              onChange={(e) => {
+                setEditInput({ ...editInput, task: e.target.value });
+              }}
+            />
+            <br />
+            <br />
+            <input
+              type="text"
+              value={editInput.description}
+              onChange={(e) => {
+                setEditInput({ ...editInput, description: e.target.value });
+              }}
+            />
+            <br />
+            <br />
+            <button type="submit">Save</button>
+          </form>
+        )}
+      </div>
     </>
   );
 };
