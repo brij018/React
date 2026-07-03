@@ -5,15 +5,14 @@
 }
 
 .container {
-  padding: 150px;
+  padding: 80px;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
   background-image: url(https://imgs.search.brave.com/9YhcwsuDKhnL7AJ4J1N-jpcdz4OaN1khKZumE4qeMvE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMTQ4/OTM2OS5qcGc);
   background-size: cover;
-  gap: 50px;
+}
+.box1 {
+  width: 100%;
+  text-align: center;
 }
 table {
   border-collapse: collapse;
@@ -25,4 +24,22 @@ th {
 td {
   border: 1px solid black;
   padding: 5px 15px;
+}
+input {
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+}
+label {
+  font-size: 18px;
+}
+.mainBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+button {
+  padding: 5px 20px;
+  border-radius: 10px;
 }

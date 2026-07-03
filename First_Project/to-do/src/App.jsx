@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Input_01 from "./components/Input_01";
 import Table from "./components/Table";
-import Edit from "./components/Edit";
 import todo from "./maintodo.module.css";
 
 const App = () => {
@@ -40,18 +39,25 @@ const App = () => {
   return (
     <>
       <div className={todo.container}>
-        <Input_01 addToList={addToList} />
-        <Table
-          list={list}
-          markDone={markDone}
-          deleteTask={deleteTask}
-          setEditInput={setEditInput}
-        />
-        <Edit
-          editInput={editInput}
-          saveTask={saveTask}
-          setEditInput={setEditInput}
-        />
+        <div className={todo.mainBox}>
+          <h1>To-Do List</h1>
+          <div className={todo.box1}>
+            <Input_01
+              addToList={addToList}
+              editInput={editInput}
+              saveTask={saveTask}
+              setEditInput={setEditInput}
+            />
+          </div>
+          <div className={todo.box2}>
+            <Table
+              list={list}
+              markDone={markDone}
+              deleteTask={deleteTask}
+              setEditInput={setEditInput}
+            />
+          </div>
+        </div>
       </div>
     </>
   );

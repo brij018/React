@@ -1,7 +1,7 @@
 import todo from "../maintodo.module.css";
 import { useState } from "react";
 
-const Input_01 = ({ addToList }) => {
+const Input_01 = ({ addToList, editInput, saveTask, setEditInput }) => {
   const [input, setInput] = useState({
     id: "",
     task: "",
@@ -27,23 +27,56 @@ const Input_01 = ({ addToList }) => {
   };
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="task"
-          value={input.task}
-          onChange={(e) => handleChange(e)}
-          required
-        />
-        <input
-          type="text"
-          name="description"
-          value={input.description}
-          onChange={(e) => handleChange(e)}
-          required
-        />
-        <button type="submit">Add</button>
-      </form>
+      {editInput && (
+        <form onSubmit={saveTask}>
+          <label htmlFor="">Task:</label>
+          <input
+            type="text"
+            value={editInput.task}
+            onChange={(e) => {
+              setEditInput({ ...editInput, task: e.target.value });
+            }}
+          />
+          <label htmlFor="">Description:</label>
+          <input
+            type="text"
+            value={editInput.description}
+            onChange={(e) => {
+              setEditInput({ ...editInput, description: e.target.value });
+            }}
+          />
+          <br />
+          <br />
+          <button type="submit">Update</button>
+        </form>
+      )}
+      {!editInput && (
+        <form action="" onSubmit={handleSubmit}>
+          <label htmlFor="" name="task">
+            Task:
+          </label>
+          <input
+            type="text"
+            name="task"
+            value={input.task}
+            onChange={(e) => handleChange(e)}
+            required
+          />
+          <label htmlFor="" name="description">
+            Description:
+          </label>
+          <input
+            type="text"
+            name="description"
+            value={input.description}
+            onChange={(e) => handleChange(e)}
+            required
+          />
+          <br />
+          <br />
+          <button type="submit">Add</button>
+        </form>
+      )}
     </>
   );
 };
