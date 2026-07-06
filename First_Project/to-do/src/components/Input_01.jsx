@@ -47,7 +47,9 @@ const Input_01 = ({ addToList, editInput, saveTask, setEditInput }) => {
           />
           <br />
           <br />
-          <button type="submit">Update</button>
+          <button className={todo.submitButton} type="submit">
+            Update
+          </button>
         </form>
       )}
       {!editInput && (
@@ -74,7 +76,9 @@ const Input_01 = ({ addToList, editInput, saveTask, setEditInput }) => {
           />
           <br />
           <br />
-          <button type="submit">Add</button>
+          <button className={todo.submitButton} type="submit">
+            ADD!
+          </button>
         </form>
       )}
     </>

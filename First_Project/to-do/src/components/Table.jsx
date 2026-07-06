@@ -18,7 +18,7 @@ const Table = ({ list, markDone, deleteTask, setEditInput }) => {
         <tbody>
           {list.map((task, index) => (
             <tr key={task.id}>
-              <td>{index + 1}</td>
+              <td style={{ textAlign: "center" }}>{index + 1}</td>
               <td>{task.task}</td>
               <td>{task.description}</td>
               <td>{task.status}</td>

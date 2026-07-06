@@ -4,7 +4,21 @@ import Table from "./components/Table";
 import todo from "./maintodo.module.css";
 
 const App = () => {
-  const [list, setList] = useState([]);
+  const defaultTasks = [
+    {
+      id: 1,
+      task: "Complete The To-Do project",
+      description: "Gotta complete it before the deadline",
+      status: "pending",
+    },
+    {
+      id: 2,
+      task: "Complete The Styling Of The To-Do project",
+      description: "Make it look good",
+      status: "pending",
+    },
+  ];
+  const [list, setList] = useState(defaultTasks);
 
   const addToList = (input) => {
     if (!input.task || !input.description) {
@@ -40,7 +54,9 @@ const App = () => {
     <>
       <div className={todo.container}>
         <div className={todo.mainBox}>
-          <h1>To-Do List</h1>
+          <h1 className={todo.heading}>
+            <u>To Do List</u>
+          </h1>
           <div className={todo.box1}>
             <Input_01
               addToList={addToList}
@@ -48,6 +64,23 @@ const App = () => {
               saveTask={saveTask}
               setEditInput={setEditInput}
             />
+          </div>
+          <div className={todo.box3}>
+            <div className={todo.box3a}>
+              <p>
+                Pending Tasks:
+                {list.filter((task) => task.status === "pending").length}
+              </p>
+            </div>
+            <div className={todo.box3a}>
+              <p>
+                Completed Tasks:
+                {list.filter((task) => task.status === "completed").length}
+              </p>
+            </div>
+            <div className={todo.box3a}>
+              <p>Total Tasks: {list.length}</p>
+            </div>
           </div>
           <div className={todo.box2}>
             <Table
