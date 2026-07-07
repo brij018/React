@@ -4,7 +4,21 @@ import Input from "./components/Input";
 import Table from "./components/Table";
 
 const App = () => {
-  const [list, setList] = useState([]);
+  const defaultTasks = [
+    {
+      id: 1,
+      task: "Complete The To-Do project",
+      description: "Gotta complete it before the deadline",
+      status: "pending",
+    },
+    {
+      id: 2,
+      task: "Complete The Styling Of The To-Do project",
+      description: "Make it look good",
+      status: "pending",
+    },
+  ];
+  const [list, setList] = useState(defaultTasks);
   const [editInput, setEditInput] = useState(null);
 
   const addToList = (input) => {
@@ -13,7 +27,7 @@ const App = () => {
     } else {
       const newTask = {
         ...input,
-        id: new Date().getDate(),
+        id: Date.now(),
       };
       setList((prev) => [...prev, newTask]);
     }
@@ -21,15 +35,17 @@ const App = () => {
 
   const markDone = (id) => {
     setList(
-      list.map((task) => (task.id === id ? { status: "complete" } : "pending")),
+      list.map((item) =>
+        item.id === id ? { ...item, status: "completed" } : item,
+      ),
     );
   };
   const deleteTask = (id) => {
-    setList(list.filter((i) => i.id === id));
+    setList(list.filter((i) => i.id !== id));
   };
   const saveTask = (e) => {
     e.preventDefault();
-    setList(list.map((task) => (task.id === editInput.id ? editInput : task)));
+    setList(list.map((item) => (item.id === editInput.id ? editInput : item)));
     setEditInput(null);
   };
   return (

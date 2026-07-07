@@ -32,18 +32,16 @@ const Input = ({ addToList, editInput, setEditInput, saveTask }) => {
             type="text"
             value={input.task}
             name="task"
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={(e) => handleChange(e)}
+            required
           />
           <label htmlFor="">Description:</label>
           <input
             type="text"
             value={input.description}
             name="description"
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={(e) => handleChange(e)}
+            required
           />
           <button type="submit">ADD</button>
         </form>
@@ -55,20 +53,20 @@ const Input = ({ addToList, editInput, setEditInput, saveTask }) => {
             type="text"
             value={editInput.task}
             name="task"
-            onChange={(prev, e) =>
-              setEditInput({ ...prev, task: e.target.value })
-            }
+            onChange={(e) => {
+              setEditInput({ ...editInput, task: e.target.value });
+            }}
           />
           <label htmlFor="">Description:</label>
           <input
             type="text"
             value={editInput.description}
             name="description"
-            onChange={(prev, e) =>
-              setEditInput({ ...prev, task: e.target.value })
-            }
+            onChange={(e) => {
+              setEditInput({ ...editInput, description: e.target.value });
+            }}
           />
-          <button type="submit">ADD</button>
+          <button type="submit">Update</button>
         </form>
       )}
     </>
