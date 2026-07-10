@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const Input = ({ addToList, editInput, setEditInput, saveTask }) => {
   const [input, setInput] = useState({
@@ -26,48 +28,60 @@ const Input = ({ addToList, editInput, setEditInput, saveTask }) => {
   return (
     <>
       {!editInput && (
-        <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="">Task:</label>
-          <input
-            type="text"
-            value={input.task}
-            name="task"
-            onChange={(e) => handleChange(e)}
-            required
-          />
-          <label htmlFor="">Description:</label>
-          <input
-            type="text"
-            value={input.description}
-            name="description"
-            onChange={(e) => handleChange(e)}
-            required
-          />
-          <button type="submit">ADD</button>
-        </form>
+        <Form action="" onSubmit={handleSubmit}>
+          <Form.Group className="m-2">
+            <Form.Label htmlFor="">Task:</Form.Label>
+            <Form.Control
+              type="text"
+              value={input.task}
+              name="task"
+              onChange={(e) => handleChange(e)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="m-2">
+            <Form.Label htmlFor="">Description:</Form.Label>
+            <Form.Control
+              type="text"
+              value={input.description}
+              name="description"
+              onChange={(e) => handleChange(e)}
+              required
+            />
+          </Form.Group>
+          <Button variant="success" className="m-2" type="submit">
+            ADD
+          </Button>
+        </Form>
       )}
       {editInput && (
-        <form action="" onSubmit={saveTask}>
-          <label htmlFor="">Task:</label>
-          <input
-            type="text"
-            value={editInput.task}
-            name="task"
-            onChange={(e) => {
-              setEditInput({ ...editInput, task: e.target.value });
-            }}
-          />
-          <label htmlFor="">Description:</label>
-          <input
-            type="text"
-            value={editInput.description}
-            name="description"
-            onChange={(e) => {
-              setEditInput({ ...editInput, description: e.target.value });
-            }}
-          />
-          <button type="submit">Update</button>
-        </form>
+        <Form action="" onSubmit={saveTask}>
+          <Form.Group className="m-2">
+            <Form.Label htmlFor="">Task:</Form.Label>
+            <Form.Control
+              type="text"
+              value={editInput.task}
+              name="task"
+              onChange={(e) => {
+                setEditInput({ ...editInput, task: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Form.Group className="m-2">
+            <Form.Label htmlFor="">Description:</Form.Label>
+            <Form.Control
+              type="text"
+              value={editInput.description}
+              name="description"
+              onChange={(e) => {
+                setEditInput({ ...editInput, description: e.target.value });
+              }}
+            />
+          </Form.Group>
+          <Button variant="info" className="m-2" type="submit">
+            Update
+          </Button>
+        </Form>
       )}
     </>
   );

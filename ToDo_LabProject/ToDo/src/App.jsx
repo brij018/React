@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import Input from "./components/Input";
-import Table from "./components/Table";
+import Table_01 from "./components/Table";
+import Container from "react-bootstrap/Container";
+import Stack from "react-bootstrap/Stack";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const App = () => {
   const defaultTasks = [
@@ -50,18 +54,31 @@ const App = () => {
   };
   return (
     <>
-      <Input
-        addToList={addToList}
-        editInput={editInput}
-        setEditInput={setEditInput}
-        saveTask={saveTask}
-      />
-      <Table
-        list={list}
-        markDone={markDone}
-        deleteTask={deleteTask}
-        setEditInput={setEditInput}
-      />
+      <Container className="pt-5">
+        <Stack gap={5}>
+          <h1 className="text-center">ToDo List</h1>
+          <Row className="justify-content-center">
+            <Col md={6}>
+              <Input
+                addToList={addToList}
+                editInput={editInput}
+                setEditInput={setEditInput}
+                saveTask={saveTask}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Table_01
+                list={list}
+                markDone={markDone}
+                deleteTask={deleteTask}
+                setEditInput={setEditInput}
+              />
+            </Col>
+          </Row>
+        </Stack>
+      </Container>
     </>
   );
 };

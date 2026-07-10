@@ -1,9 +1,11 @@
 import React from "react";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
-const Table = ({ list, markDone, deleteTask, setEditInput }) => {
+const Table_01 = ({ list, markDone, deleteTask, setEditInput }) => {
   return (
     <>
-      <table>
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>ID</th>
@@ -24,22 +26,28 @@ const Table = ({ list, markDone, deleteTask, setEditInput }) => {
               <td>{t.status}</td>
 
               <td>
-                <button onClick={() => markDone(t.id)}>Done</button>
+                <Button variant="outline-dark" onClick={() => markDone(t.id)}>
+                  Done
+                </Button>
               </td>
 
               <td>
-                <button onClick={() => deleteTask(t.id)}>Delete</button>
+                <Button variant="outline-dark" onClick={() => deleteTask(t.id)}>
+                  Delete
+                </Button>
               </td>
 
               <td>
-                <button onClick={() => setEditInput(t)}>Edit</button>
+                <Button variant="outline-dark" onClick={() => setEditInput(t)}>
+                  Edit
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </>
   );
 };
 
-export default Table;
+export default Table_01;
