@@ -1,17 +1,21 @@
-import React from "react";
+import React, { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./router/MainLayout";
-import Home from "./components/Home";
-import About from "./components/About";
-import Service from "./components/Service";
-import Product from "./components/Product";
+const Home = lazy(() => import("./components/Home"));
+const About = lazy(() => import("./components/About"));
+const Service = lazy(() => import("./components/Service"));
+const Product = lazy(() => import("./components/Product"));
 import Error from "./components/Error";
+import Loading from "./components/Loading";
+
+import { Suspense } from "react";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout />,
+      errorElement: <Error />,
       children: [
         {
           index: true,
@@ -26,14 +30,18 @@ const App = () => {
           element: <Service />,
         },
         {
-          path: "product",
+          path: "product/:id",
           element: <Product />,
         },
       ],
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <Suspense fallback={<Loading />}>
+      <RouterProvider router={router}></RouterProvider>
+    </Suspense>
+  );
 };
 
 export default App;
