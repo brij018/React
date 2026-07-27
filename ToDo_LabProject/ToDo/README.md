@@ -1,16 +1,144 @@
-# React + Vite
+# 📝 React To-Do List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and responsive **To-Do List** application built with **React.js** that demonstrates CRUD (Create, Read, Update, Delete) operations and React state management.
 
-Currently, two official plugins are available:
+This project was created as a lab/practice project to strengthen React fundamentals such as components, props, state, event handling, conditional rendering, and list rendering.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- ➕ Add new tasks
+- ✏️ Edit existing tasks
+- 🗑️ Delete tasks
+- ✅ Mark tasks as completed
+- 📋 Display all tasks in a table
+- 📱 Responsive and clean UI
+- ⚡ Real-time UI updates using React State
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- React.js
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Bootstrap
+
+---
+
+## 📂 Project Structure
+
+```
+ToDo/
+│
+├── public/
+│
+├── src/
+│   ├── components/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── ...
+│
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/brij018/React.git
+```
+
+Navigate to the project
+
+```bash
+cd React/ToDo_LabProject/ToDo
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+
+<img width="1917" height="918" alt="image" src="https://github.com/user-attachments/assets/4691d949-7914-4abd-a112-9f690ffa0674" />
+
+
+![Home Page](images/home.png)
+
+---
+
+### Editing a Task
+
+<img width="1917" height="921" alt="image" src="https://github.com/user-attachments/assets/69be1a80-b782-490c-a4fa-551e14fc23ff" />
+
+
+![Edit Task](images/edit.png)
+
+---
+
+## 💡 How It Works
+
+- Enter a task title and description.
+- Click **Add** to create a new task.
+- Click **Edit** to modify an existing task.
+- Click **Done** to mark a task as completed.
+- Click **Delete** to remove a task from the list.
+- The UI updates instantly without refreshing the page.
+
+---
+
+## 🎯 Learning Objectives
+
+This project helped me understand:
+
+- React Components
+- JSX
+- useState Hook
+- Event Handling
+- Conditional Rendering
+- Rendering Lists using `map()`
+- CRUD Operations in React
+- Component-based Architecture
+
+---
+
+## 🔮 Future Improvements
+
+- ⏰ Due dates
+- 📅 Task categories
+- 🔍 Search functionality
+- 🌓 Dark mode
+- 💾 Local Storage support
+- ☁️ Backend integration
+- 👤 User Authentication
+
+---
+
+## 👨‍💻 Author
+
+**Brij Rathod**
+
+GitHub: https://github.com/brij018
+
+---
+
+## ⭐ If you found this project helpful, consider giving it a star!
