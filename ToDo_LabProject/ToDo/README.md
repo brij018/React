@@ -82,16 +82,12 @@ npm run dev
 <img width="1917" height="918" alt="image" src="https://github.com/user-attachments/assets/4691d949-7914-4abd-a112-9f690ffa0674" />
 
 
-![Home Page](images/home.png)
-
 ---
 
 ### Editing a Task
 
 <img width="1917" height="921" alt="image" src="https://github.com/user-attachments/assets/69be1a80-b782-490c-a4fa-551e14fc23ff" />
 
-
-![Edit Task](images/edit.png)
 
 ---
 
