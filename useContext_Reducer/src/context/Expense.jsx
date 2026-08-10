@@ -14,8 +14,13 @@ export const ExpenseContext = createContext({
 
 const init = () => {
   try {
-    const saved = localStorage.getItem("expenses");
-    return saved ? JSON.parse(saved) : initialValues;
+    const saved = localStorage.getItem("expense");
+
+    console.log("saved", saved);
+
+    return saved
+      ? { ...initialValues, expenseList: JSON.parse(saved) }
+      : initialValues;
   } catch (error) {
     console.log(error);
     return initialValues;
@@ -91,8 +96,13 @@ const ExpenseContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(expenseReducer, initialValues, init);
 
   useEffect(() => {
-    localStorage.setItem("expenses", JSON.stringify(state));
-  }, [state]);
+    const data = localStorage.setItem(
+      "expense",
+      JSON.stringify(state.expenseList),
+    );
+
+    console.log(localStorage.getItem("expense"));
+  }, [state.expenseList]);
 
   const addExpense = (input) => {
     if (!input) {
@@ -110,13 +120,17 @@ const ExpenseContextProvider = ({ children }) => {
     dispatch({ type: "delete", payload: id });
   };
 
-  const credit = state.expenseList.reduce((total, expense) => {
-    return expense.type === "credit" ? total + Number(expense.amount) : total;
-  }, 0);
+  const credit = state.expenseList
+    .filter((l) => l.type === "credit")
+    .reduce((acc, curr) => {
+      return (acc += Number(curr.amount));
+    }, 0);
 
-  const debit = state.expenseList.reduce((total, expense) => {
-    return expense.type === "debit" ? total + Number(expense.amount) : total;
-  }, 0);
+  const debit = state.expenseList
+    .filter((l) => l.type === "debit")
+    .reduce((acc, curr) => {
+      return (acc += Number(curr.amount));
+    }, 0);
 
   const balance = credit - debit;
   const value = {

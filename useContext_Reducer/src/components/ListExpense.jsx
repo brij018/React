@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ExpenseContext } from "../context/Expense";
+import { Form, Table, Badge, Button, Col, Row } from "react-bootstrap";
 
 const ListExpense = () => {
   const {
@@ -58,65 +59,85 @@ const ListExpense = () => {
 
   return (
     <>
-      <h1>Balance: {balance}</h1>
-      <h1>Credit: {credit}</h1>
-      <h1>Debit: {debit}</h1>
-      <br />
-      <br />
-      <br />
-      <form>
-        <input
-          type="text"
-          placeholder="search by name"
-          name="title"
-          value={expenseQuery.title}
-          onChange={(e) => handleChange(e)}
-        />
-        <select
-          name="type"
-          id="type"
-          value={expenseQuery.type}
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="all" selected>
-            Expense Type
-          </option>
-          <option value="credit">credit</option>
-          <option value="debit">debit</option>
-        </select>
-        <select
-          name="category"
-          id="category"
-          value={expenseQuery.category}
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="all" selected>
-            Expense category
-          </option>
-          <option value="Money Transfer">Money Transfer</option>
-          <option value="Cash Withdrawal">Cash Withdrawal</option>
-          <option value="General Expense">General Expense</option>
-          <option value="Food&Dining">Food&Dining</option>
-          <option value="HealthCare">HealthCare</option>
-          <option value="Shopping">Shopping</option>
-          <option value="Travel">Travel</option>
-        </select>
-        <select
-          name="sort"
-          id="sort"
-          value={expenseQuery.sort}
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="asc">ascending</option>
-          <option value="desc">descending</option>
-          <option value="moneyAsc">Money Ascending</option>
-          <option value="moneyDsc">Money Descending</option>
-        </select>
-      </form>
-      <br />
-      <br />
-      <br />
-      <table border={2}>
+      <Row className="mb-3 g-3 text-center">
+        <Col xs={4}>
+          <div className="p-2 bg-success bg-opacity-10 rounded-3">
+            <h6 className="text-success text-uppercase mb-1">Balance</h6>
+            <h4 className="fw-bold text-success mb-0">{balance}</h4>
+          </div>
+        </Col>
+        <Col xs={4}>
+          <div className="p-2 bg-primary bg-opacity-10 rounded-3">
+            <h6 className="text-primary text-uppercase mb-1">Credit</h6>
+            <h4 className="fw-bold text-primary mb-0">{credit}</h4>
+          </div>
+        </Col>
+        <Col xs={4}>
+          <div className="p-2 bg-danger bg-opacity-10 rounded-3">
+            <h6 className="text-danger text-uppercase mb-1">Debit</h6>
+            <h4 className="fw-bold text-danger mb-0">{debit}</h4>
+          </div>
+        </Col>
+      </Row>
+
+      <Form className="mb-3">
+        <Row className="g-2">
+          <Col md={4}>
+            <Form.Control
+              type="text"
+              placeholder="Search by name"
+              name="title"
+              value={expenseQuery.title}
+              onChange={(e) => handleChange(e)}
+            />
+          </Col>
+          <Col md={3}>
+            <Form.Select
+              name="type"
+              id="type"
+              value={expenseQuery.type}
+              onChange={(e) => handleChange(e)}
+            >
+              <option value="all">Expense Type</option>
+              <option value="credit">credit</option>
+              <option value="debit">debit</option>
+            </Form.Select>
+          </Col>
+          <Col md={3}>
+            <Form.Select
+              name="category"
+              id="category"
+              value={expenseQuery.category}
+              onChange={(e) => handleChange(e)}
+            >
+              <option value="all">Expense category</option>
+              <option value="Money Transfer">Money Transfer</option>
+              <option value="Cash Withdrawal">Cash Withdrawal</option>
+              <option value="General Expense">General Expense</option>
+              <option value="Food&Dining">Food&Dining</option>
+              <option value="HealthCare">HealthCare</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Travel">Travel</option>
+            </Form.Select>
+          </Col>
+          <Col md={2}>
+            <Form.Select
+              name="sort"
+              id="sort"
+              value={expenseQuery.sort}
+              onChange={(e) => handleChange(e)}
+            >
+              <option value="asc">ascending</option>
+              <option value="desc">descending</option>
+              <option value="moneyAsc">Money Ascending</option>
+              <option value="moneyDsc">Money Descending</option>
+            </Form.Select>
+          </Col>
+        </Row>
+      </Form>
+
+      <div className="table-responsive">
+        <Table striped bordered hover className="mb-0">
         <thead>
           <tr>
             <th>Id</th>
@@ -140,25 +161,45 @@ const ListExpense = () => {
                   <td>{data.amount}</td>
                   <td>{data.date}</td>
                   <td>{data.category}</td>
-                  <td>{data.type}</td>
                   <td>
-                    <button onClick={() => handleExpenseEdit(data.id)}>
-                      Edit
-                    </button>
+                    <Badge
+                      bg={data.type === "credit" ? "success" : "danger"}
+                      className="text-capitalize"
+                    >
+                      {data.type}
+                    </Badge>
                   </td>
                   <td>
-                    <button onClick={() => deleteExpense(data.id)}>
+                    <Button
+                      size="sm"
+                      variant="warning"
+                      onClick={() => handleExpenseEdit(data.id)}
+                    >
+                      Edit
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      onClick={() => deleteExpense(data.id)}
+                    >
                       Delete
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               );
             })
           ) : (
-            <h2>No data found</h2>
+            <tr>
+              <td colSpan={9} className="text-center py-4">
+                <h5 className="text-muted mb-0">No data found</h5>
+              </td>
+            </tr>
           )}
         </tbody>
-      </table>
+      </Table>
+      </div>
     </>
   );
 };
