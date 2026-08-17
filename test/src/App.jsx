@@ -1,7 +1,12 @@
 import React from "react";
+import AddExpense from "./components/AddExpense";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <AddExpense />
+    </>
+  );
 };
 
 export default App;
