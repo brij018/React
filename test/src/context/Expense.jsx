@@ -1,11 +1,11 @@
-import React from "react";
-import { createContext, useState, useEffect, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 
 export const ExpenseContext = createContext({
   expenseList: [],
   addExpense: () => {},
   deleteExpense: () => {},
   editExpense: () => {},
+  handleExpenseEdit: () => {},
   editValue: null,
   balance: 0,
   credit: 0,
@@ -37,10 +37,11 @@ const expenseReducer = (state, action) => {
           expenseList: state.expenseList.map((e) =>
             e.id === state.editValue.id
               ? {
-                  ...expenseList,
+                  ...e,
                   ...input,
+                  amount: Number(input.amount),
                 }
-              : expenseList,
+              : e,
           ),
           editValue: null,
         };
@@ -50,7 +51,7 @@ const expenseReducer = (state, action) => {
           title: input.title,
           description: input.description,
           category: input.category,
-          amount: input.amount,
+          amount: Number(input.amount),
           date: input.date,
           type: input.type,
         };
@@ -60,26 +61,64 @@ const expenseReducer = (state, action) => {
         };
       }
     }
+    case "edit": {
+      return {
+        ...state,
+        editValue: action.payload,
+      };
+    }
+    case "delete": {
+      return {
+        ...state,
+        expenseList: state.expenseList.filter((l) => l.id !== action.payload),
+      };
+    }
+    default:
+      return state;
   }
 };
 
 const ExpenseContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(expenseReducer, initialValues);
 
-  const [editValue, setEditValue] = useState(null);
-
   const addExpense = (input) => {
-    if (!input) {
+    if (!input || !input.title) {
       alert("Must fill all the details asked!!!!");
+      return;
     }
     dispatch({ type: "add", payload: input });
   };
 
+  const deleteExpense = (id) => {
+    dispatch({ type: "delete", payload: id });
+  };
+
+  const editExpense = (expense) => {
+    dispatch({ type: "edit", payload: expense });
+  };
+
+  const credit = state.expenseList
+    .filter((e) => e.type === "credit")
+    .reduce((acc, item) => acc + Number(item.amount || 0), 0);
+
+  const debit = state.expenseList
+    .filter((e) => e.type === "debit")
+    .reduce((acc, item) => acc + Number(item.amount || 0), 0);
+
+  const balance = credit - debit;
+
   const values = {
     expenseList: state.expenseList,
     addExpense,
-    editValue,
+    deleteExpense,
+    editExpense,
+    handleExpenseEdit: editExpense,
+    editValue: state.editValue,
+    balance,
+    credit,
+    debit,
   };
+
   return (
     <ExpenseContext.Provider value={values}>{children}</ExpenseContext.Provider>
   );
