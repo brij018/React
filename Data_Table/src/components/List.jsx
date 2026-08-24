@@ -1,6 +1,6 @@
-import { Alert, Button, Container, Spinner, Table } from "react-bootstrap";
+import { Alert, Container, Spinner, Table } from "react-bootstrap";
 
-const List = ({ data, loading, error, onEdit, onDelete }) => {
+const List = ({ data, loading, error }) => {
   if (loading) {
     return (
       <Container className="d-flex justify-content-center py-5">
@@ -29,7 +29,6 @@ const List = ({ data, loading, error, onEdit, onDelete }) => {
             <th>Phone</th>
             <th>Website</th>
             <th>Company</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -42,23 +41,6 @@ const List = ({ data, loading, error, onEdit, onDelete }) => {
               <td>{user.phone}</td>
               <td>{user.website}</td>
               <td>{user.company?.name}</td>
-              <td>
-                <Button
-                  size="sm"
-                  variant="outline-primary"
-                  className="me-1"
-                  onClick={() => onEdit(user)}
-                >
-                  Edit
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline-danger"
-                  onClick={() => onDelete(user.id)}
-                >
-                  Delete
-                </Button>
-              </td>
             </tr>
           ))}
         </tbody>
