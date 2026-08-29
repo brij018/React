@@ -10,6 +10,8 @@ Nothing too complicated here — just a place to experiment, break things, fix t
 
 Vercel: https://expense012-six.vercel.app/
 
+Video: https://drive.google.com/file/d/1JkN2bDsjNnW75lHPcsYx7tTEbCeJxukx/view?usp=drive_link
+
 ---
 
 ## ✨ What's Inside?
