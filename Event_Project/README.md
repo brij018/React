@@ -10,6 +10,8 @@ The project is built with **React and Vite**, giving it a lightweight setup with
 
 Vercel: https://react-two-orcin.vercel.app/
 
+Video: https://drive.google.com/file/d/1Xvqfngjx8HGIzA_BEjfrMA6xLPuOVBKF/view?usp=sharing
+
 ---
 
 ## ✨ What's Inside?
