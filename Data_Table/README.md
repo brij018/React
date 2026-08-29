@@ -12,7 +12,7 @@ The project is built with **React + Vite**, so getting it running is pretty stra
 
 Vercel: https://datatable123.vercel.app/
 
-Video: https://drive.google.com/file/d/1JkN2bDsjNnW75lHPcsYx7tTEbCeJxukx/view?usp=drive_link
+Video: https://drive.google.com/file/d/1sWDt0fic8IO0O1kGlaq_dhRuFqHJFIw4/view?usp=sharing
 
 ---
 
